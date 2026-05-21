@@ -202,7 +202,7 @@ export class PanelCreator extends Component {
     }
 
     public static slotReward(slotgameNode: Node, rewardType: number, rewardA: number, rewardB: number) {
-        PanelFactory.open(SlotRewardPanel, slotgameNode, rewardType, rewardA, rewardB);
+        // PanelFactory.open(SlotRewardPanel, slotgameNode, rewardType, rewardA, rewardB);
     }
 
     public static settingPanel() {

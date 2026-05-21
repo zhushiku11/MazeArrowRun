@@ -171,18 +171,18 @@ export class Game0Scene extends Component {
     }
 
     onAMoneyChange() {
-        let label = this.withdrawTips.getComponentInChildren(Label);
-        let goodsData = WithdrawSystem.I.getGoodsData();
-        let goodsItem = goodsData.find((value) => {
-            return AMoney.value() < value.FtEgPri;
-        })
-        if (goodsItem) {
-            this.withdrawTips.active = true;
-            let num = goodsItem.FtEgPri - AMoney.value();
-            label.string = Language.getWord("l_withdrawTips", Language.getCurrSym(), AMoney.string(num), Language.getCurrSym(), AMoney.string(goodsItem.FtEgPri));
-        } else {
-            this.withdrawTips.active = false;
-        }
+        // let label = this.withdrawTips.getComponentInChildren(Label);
+        // let goodsData = WithdrawSystem.I.getGoodsData();
+        // let goodsItem = goodsData.find((value) => {
+        //     return AMoney.value() < value.FtEgPri;
+        // })
+        // if (goodsItem) {
+        //     this.withdrawTips.active = true;
+        //     let num = goodsItem.FtEgPri - AMoney.value();
+        //     label.string = Language.getWord("l_withdrawTips", Language.getCurrSym(), AMoney.string(num), Language.getCurrSym(), AMoney.string(goodsItem.FtEgPri));
+        // } else {
+        //     this.withdrawTips.active = false;
+        // }
     }
 
     onBMoneyChange() {

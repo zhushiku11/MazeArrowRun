@@ -9,6 +9,9 @@ Object.defineProperty(MOCK_DATA, api.newUserReward, {
         },
         MjPuso: {
             MjPmy: 1.5,
+            SdegEwl: 0.55,
+            SdegBaci: 2.0,
+            SdegBac: 2.0,
         }
     }
 })

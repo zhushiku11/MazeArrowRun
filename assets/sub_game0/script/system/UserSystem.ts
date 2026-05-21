@@ -408,7 +408,7 @@ export class UserSystem {
     congratulationsMoney(rewardA: number, rewardB: number, rewardC: number = 0) {
         if (rewardA > 0 || rewardB > 0 || rewardC > 0) {
             // 恭喜弹窗
-            PanelCreator.congratulations(rewardA, rewardB, rewardC, 0);
+            PanelCreator.congratulations(0, rewardB, rewardC, 0);
         }
     }
 
@@ -421,6 +421,50 @@ export class UserSystem {
     }
 
     // 新手奖励结算
+    // getNewUserReward(endCb: (rewardA: number, rewardB: number) => void) {
+    //     // 新手奖励
+    //     let rewardA = 0;
+    //     let rewardB = 0;
+    //     if (PlayerSystem.I.isNewUser()) {
+    //         NetworkSystem.newUserReward().then((result: NetworkResult) => {
+    //             console.log(result);
+    //             if (!result.error) {
+    //                 // 现金
+    //                 switch (Language.currency) {
+    //                     case CurrencyType.US:
+    //                         // 现金
+    //                         rewardA = result.data.MjPacg.MjPrnw;
+    //                         if (rewardA > 0) {
+    //                             rewardA = 77;
+    //                             AMoney.set(AMoney.value() + rewardA);
+    //                         }
+    //                         break;
+    //                     case CurrencyType.BR:
+    //                         // 现金
+    //                         rewardA = result.data.MjPacg.MjPrnw;
+    //                         if (rewardA > 0) {
+    //                             rewardA = 51;
+    //                             AMoney.set(AMoney.value() + rewardA);
+    //                         }
+    //                         break;
+    //                     case CurrencyType.ID:
+    //                         rewardA = result.data.MjPacg.MjPrnw;
+    //                         if (rewardA > 0) {
+    //                             rewardA = 25000;
+    //                             AMoney.set(AMoney.value() + rewardA);
+    //                         }
+    //                         break;
+    //                 }
+    //                 this.vo.isWithdrawAMoney = false;
+    //             }
+    //             endCb && endCb(rewardA, rewardB);
+    //         })
+    //     } else {
+    //         setTimeout(() => {
+    //             endCb && endCb(rewardA, rewardB);
+    //         }, 500);
+    //     }
+    // }
     getNewUserReward(endCb: (rewardA: number, rewardB: number) => void) {
         // 新手奖励
         let rewardA = 0;
@@ -429,29 +473,21 @@ export class UserSystem {
             NetworkSystem.newUserReward().then((result: NetworkResult) => {
                 console.log(result);
                 if (!result.error) {
-                    // 现金
+                    rewardB = result.data.MjPacg.MjPrnw;
                     switch (Language.currency) {
                         case CurrencyType.US:
-                            // 现金
-                            rewardA = result.data.MjPacg.MjPrnw;
-                            if (rewardA > 0) {
-                                rewardA = 77;
-                                AMoney.set(AMoney.value() + rewardA);
+                            if (rewardB > 0) {
+                                BMoney.set(result.data.MjPuso.SdegBaci, result.data.MjPuso.SdegEwl);
                             }
                             break;
                         case CurrencyType.BR:
-                            // 现金
-                            rewardA = result.data.MjPacg.MjPrnw;
-                            if (rewardA > 0) {
-                                rewardA = 51;
-                                AMoney.set(AMoney.value() + rewardA);
+                            if (rewardB > 0) {
+                                BMoney.set(result.data.MjPuso.SdegBac, result.data.MjPuso.SdegEwl);
                             }
                             break;
                         case CurrencyType.ID:
-                            rewardA = result.data.MjPacg.MjPrnw;
-                            if (rewardA > 0) {
-                                rewardA = 25000;
-                                AMoney.set(AMoney.value() + rewardA);
+                            if (rewardB > 0) {
+                                BMoney.set(result.data.MjPuso.SdegBac, result.data.MjPuso.SdegEwl);
                             }
                             break;
                     }
@@ -465,7 +501,6 @@ export class UserSystem {
             }, 500);
         }
     }
-
     // openWithdrawInput(type: number, amount: number, endCb?: Function) {
     //     Panel.open(SUBGAME.PANEL.WITHDRAW_INFO_PANEL, type, amount, endCb);
     // }

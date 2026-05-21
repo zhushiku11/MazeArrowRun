@@ -3,7 +3,8 @@ import AudioTools from "../doge/framework/common/AudioTools";
 import { getEventEmiter } from "../doge/framework/common/EventEmitter";
 import { MAIN } from "../main/constant/Constant";
 
-const JAVA_CLASS = "com/devboutart/arrows/a6/q1/ArrowsMaze";
+const JAVA_CLASS = "com/arrows/maze/page/MainActivity";
+// const MAIN_ACTIVITY = "com/arrows/maze/page/MainActivity";
 
 export enum AD_TYPE {
     NONE = 0,

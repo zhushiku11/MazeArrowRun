@@ -105,33 +105,38 @@ export class GuidePanel extends Component implements IPanel {
                 this.gamePinch.getComponent(PinchZoom).setProgressValue(progress, false);
                 break;
             case 3:
+                console.log("step 3");  
                 PanelCreator.newUserRewarad();
                 break;
             case 4:
-                this.mask.active = true;
-                stepItem = this.steps[step];
-                stepItem.active = true;
-                slot = find("Slot", stepItem);
-                finger = find("Finger", stepItem);
-                this.tmpParent = this.amoney.parent;
-                Utils.changeParent(this.amoney, slot);
-                this.getComponent(Button).enabled = true;
-                tween(finger)
-                    .delay(0.15)
-                    .set({ angle: 30 })
-                    .delay(0.15)
-                    .set({ angle: 0 })
-                    .delay(0.15)
-                    .set({ angle: 30 })
-                    .delay(0.15)
-                    .set({ angle: 0 })
-                    .delay(0.8)
-                    .union()
-                    .repeatForever()
-                    .start();
+                GuideSystem.I.nextStep();
+                this.show();
+                // this.mask.active = true;
+                // stepItem = this.steps[step];
+                // stepItem.active = true;
+                // slot = find("Slot", stepItem);
+                // finger = find("Finger", stepItem);
+                // this.tmpParent = this.amoney.parent;
+                // Utils.changeParent(this.amoney, slot);
+                // this.getComponent(Button).enabled = true;
+                // tween(finger)
+                //     .delay(0.15)
+                //     .set({ angle: 30 })
+                //     .delay(0.15)
+                //     .set({ angle: 0 })
+                //     .delay(0.15)
+                //     .set({ angle: 30 })
+                //     .delay(0.15)
+                //     .set({ angle: 0 })
+                //     .delay(0.8)
+                //     .union()
+                //     .repeatForever()
+                //     .start();
                 break;
             case 5:
                 Utils.changeParent(this.amoney, this.tmpParent);
+                GuideSystem.I.nextStep();
+                this.show();
                 break;
             case 6:
                 this.mask.active = true;
