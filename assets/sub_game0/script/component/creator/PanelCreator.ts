@@ -12,6 +12,7 @@ import { SettingPanel } from 'db://assets/sub_game0/script/component/panels/Sett
 import { WithdrawRatePanel } from 'db://assets/sub_game0/script/component/panels/WithdrawRatePanel';
 import { WithdrawTaskPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawTaskPanel';
 import { SlotGamePanel } from 'db://assets/sub_game0/script/component/panels/SlotGamePanel';
+// import { SpinGamePane } from 'db://assets/sub_game0/script/component/panels/SpinGamePane';
 import { PropBuyPanel } from 'db://assets/sub_game0/script/component/panels/PropBuyPanel';
 import { WithdrawAPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawAPanel';
 import { WithdrawBPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawBPanel';
@@ -71,6 +72,8 @@ export class PanelCreator extends Component {
     private settingPanel: Prefab = null;
     @property(Prefab)
     private replayPanel: Prefab = null;
+    @property(Prefab)
+    private SpinGamePane: Prefab = null;
 
     private static pusher: Function[] = [];
     private static pushing: Function = null;
@@ -92,6 +95,7 @@ export class PanelCreator extends Component {
             [LevelWithdrawPanel, this.levelWithdrawPanel],
             [WithdrawTaskPanel, this.withdrawTaskPanel],
             [SlotGamePanel, this.slotGamePanel],
+            // [SpinGamePane, this.SpinGamePane],
             [SlotRewardPanel, this.slotRewardPanel],
             [SettingPanel, this.settingPanel],
             [ReplayPanel, this.replayPanel],
@@ -200,7 +204,9 @@ export class PanelCreator extends Component {
     public static slotGamePanel() {
         PanelFactory.open(SlotGamePanel);
     }
-
+    public static SpinGamePanel() {
+        // PanelFactory.open(SpinGamePane);
+    }
     public static slotReward(slotgameNode: Node, rewardType: number, rewardA: number, rewardB: number) {
         // PanelFactory.open(SlotRewardPanel, slotgameNode, rewardType, rewardA, rewardB);
     }

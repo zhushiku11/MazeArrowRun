@@ -97,8 +97,8 @@ export class NetworkSystem {
 
     public static newUserReward(): Promise<NetworkResult> {
         let jsonStr = HttpHelper.signXXTea({
-            MjPapid: PlayerSystem.I.getAppID(),
-            MjPusid: PlayerSystem.I.getUserID(),
+            AmZapid: PlayerSystem.I.getAppID(),
+            AmZUsid: PlayerSystem.I.getUserID(),
         });
         return NetworkSystem.send(api.newUserReward, jsonStr);
     }
@@ -167,5 +167,21 @@ export class NetworkSystem {
             MjPusid: PlayerSystem.I.getUserID(),
         });
         return NetworkSystem.send(api.uploadLevel, jsonStr);
+    }
+    public static lotteryInfo(): Promise<NetworkResult> {
+        let jsonStr = HttpHelper.signXXTea({
+            AmZApid: PlayerSystem.I.getAppID(),
+            AmZUsid: PlayerSystem.I.getUserID(),
+            vn: PlayerSystem.I.getVersion(),
+        });
+        return NetworkSystem.send(api.lotteryInfo, jsonStr);
+    }
+    public static lotteryList(): Promise<NetworkResult> {
+        let jsonStr = HttpHelper.signXXTea({
+            AmZApid: PlayerSystem.I.getAppID(),
+            AmZUsid: PlayerSystem.I.getUserID(),
+            vn: PlayerSystem.I.getVersion(),
+        });
+        return NetworkSystem.send(api.lotteryList, jsonStr);
     }
 }

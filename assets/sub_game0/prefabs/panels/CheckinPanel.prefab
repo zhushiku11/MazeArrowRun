@@ -1203,6 +1203,8 @@
     "__prefab": {
       "__id__": 48
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "amoney",
     "replaceModel": 0,
@@ -2322,6 +2324,8 @@
     "__prefab": {
       "__id__": 96
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "bmoney",
     "replaceModel": 0,
@@ -3441,6 +3445,8 @@
     "__prefab": {
       "__id__": 144
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "amoney",
     "replaceModel": 0,
@@ -4560,6 +4566,8 @@
     "__prefab": {
       "__id__": 192
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "bmoney",
     "replaceModel": 0,
@@ -5679,6 +5687,8 @@
     "__prefab": {
       "__id__": 240
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "amoney",
     "replaceModel": 0,
@@ -6798,6 +6808,8 @@
     "__prefab": {
       "__id__": 288
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "amoney",
     "replaceModel": 0,
@@ -7917,6 +7929,8 @@
     "__prefab": {
       "__id__": 336
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "bmoney",
     "replaceModel": 0,
@@ -9036,6 +9050,8 @@
     "__prefab": {
       "__id__": 384
     },
+    "_editorLanguage": 0,
+    "_editorCurrency": 0,
     "bundle": "",
     "key": "amoney",
     "replaceModel": 0,
@@ -9984,7 +10000,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -10334,7 +10350,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -10596,7 +10612,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -10795,7 +10811,7 @@
     },
     "_type": 1,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,

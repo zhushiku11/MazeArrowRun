@@ -119,7 +119,7 @@ export class Game0Scene extends Component {
         switch (Language.currency) {
             case CurrencyType.US:
             case CurrencyType.ID:
-                this.levelWithdraw.active = true;
+                this.levelWithdraw.active = false;
                 this.withdrawTask.active = false;
                 tween(this.levelWithdraw)
                     .to(1, { scales: 1.1 })
