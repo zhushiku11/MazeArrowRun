@@ -31,7 +31,9 @@ export class NormalRewardPanel extends Component implements IPanel {
     private lock: boolean = false;
 
     onInit(rewardA: number) {
+        //BMoney.string(bmoneyReward)
         this.rewardANum = rewardA;
+        console.log('=== NormalRewardPanel rewardANum ===', this.rewardANum);
         if (this.rewardANum) {
             this.rewardA.getComponentInChildren(Label).string = Language.getWordByCurrency("l_money", Language.getCurrSym(), AMoney.string(this.rewardANum));
         } else {

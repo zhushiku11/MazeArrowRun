@@ -184,4 +184,14 @@ export class NetworkSystem {
         });
         return NetworkSystem.send(api.lotteryList, jsonStr);
     }
+    
+    public static lotteryResult(lotteryId: number): Promise<NetworkResult> {
+        let jsonStr = HttpHelper.signXXTea({
+            AmZApid: PlayerSystem.I.getAppID(),
+            AmZUsid: PlayerSystem.I.getUserID(),
+            AmZlId: lotteryId,  // 中奖的 id
+            vn: PlayerSystem.I.getVersion(),
+        });
+        return NetworkSystem.send(api.lotteryResult, jsonStr);
+    }
 }

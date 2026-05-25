@@ -11,4 +11,5 @@ export const api = {
     uploadLevel: `${domain}/Maze/Run/AddReach`, // 上报关卡
     lotteryInfo: `${domain}/Maze/Run/LotteryInfo`, // 去抽奖
     lotteryList: `${domain}/Maze/Run/LotteryList`, // 抽奖列表信息
+    lotteryResult: `${domain}/Maze/Run/AddEarn`, // 发送中奖结果
 }

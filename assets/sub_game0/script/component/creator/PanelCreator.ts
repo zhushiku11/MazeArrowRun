@@ -12,7 +12,6 @@ import { SettingPanel } from 'db://assets/sub_game0/script/component/panels/Sett
 import { WithdrawRatePanel } from 'db://assets/sub_game0/script/component/panels/WithdrawRatePanel';
 import { WithdrawTaskPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawTaskPanel';
 import { SlotGamePanel } from 'db://assets/sub_game0/script/component/panels/SlotGamePanel';
-// import { SpinGamePane } from 'db://assets/sub_game0/script/component/panels/SpinGamePane';
 import { PropBuyPanel } from 'db://assets/sub_game0/script/component/panels/PropBuyPanel';
 import { WithdrawAPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawAPanel';
 import { WithdrawBPanel } from 'db://assets/sub_game0/script/component/panels/WithdrawBPanel';
@@ -31,6 +30,8 @@ import { NI } from 'db://assets/native_interface/NI';
 import { SlotRewardPanel } from '../panels/SlotRewardPanel';
 import { ReplayPanel } from '../panels/ReplayPanel';
 import { WinPanel } from '../panels/WinPanel';
+import { LuckySpinPanel } from 'db://assets/sub_game0/script/component/panels/LuckySpinPanel';  
+import { LuckySpinResultPanel } from 'db://assets/sub_game0/script/component/panels/LuckySpinResultPanel';      
 const { ccclass, property } = _decorator;
 
 @ccclass('PanelCreator')
@@ -73,7 +74,9 @@ export class PanelCreator extends Component {
     @property(Prefab)
     private replayPanel: Prefab = null;
     @property(Prefab)
-    private SpinGamePane: Prefab = null;
+    private luckySpinPanel: Prefab = null;
+    @property(Prefab)
+    private luckySpinResultPanel: Prefab = null;
 
     private static pusher: Function[] = [];
     private static pushing: Function = null;
@@ -95,7 +98,8 @@ export class PanelCreator extends Component {
             [LevelWithdrawPanel, this.levelWithdrawPanel],
             [WithdrawTaskPanel, this.withdrawTaskPanel],
             [SlotGamePanel, this.slotGamePanel],
-            // [SpinGamePane, this.SpinGamePane],
+            [LuckySpinPanel, this.luckySpinPanel],
+            [LuckySpinResultPanel, this.luckySpinResultPanel],
             [SlotRewardPanel, this.slotRewardPanel],
             [SettingPanel, this.settingPanel],
             [ReplayPanel, this.replayPanel],
@@ -152,6 +156,7 @@ export class PanelCreator extends Component {
 
     public static normalReward() {
         let rewardA = UserSystem.I.getCashReward();
+        console.log('=== normalReward rewardA ===', rewardA);
         PanelFactory.open(NormalRewardPanel, rewardA);
     }
 
@@ -204,9 +209,6 @@ export class PanelCreator extends Component {
     public static slotGamePanel() {
         PanelFactory.open(SlotGamePanel);
     }
-    public static SpinGamePanel() {
-        // PanelFactory.open(SpinGamePane);
-    }
     public static slotReward(slotgameNode: Node, rewardType: number, rewardA: number, rewardB: number) {
         // PanelFactory.open(SlotRewardPanel, slotgameNode, rewardType, rewardA, rewardB);
     }
@@ -219,6 +221,14 @@ export class PanelCreator extends Component {
         PanelFactory.open(ReplayPanel);
     }
 
+    public static luckySpin() {
+        PanelFactory.open(LuckySpinPanel);
+    }
+    
+    public static luckySpinResult() {
+        PanelFactory.open(LuckySpinResultPanel);
+    }
+    
     public static inPusher(cls: typeof Component, ...args: any[]) {
         this.pusher.push(() => {
             const panel: any = PanelFactory.open(cls, ...args);

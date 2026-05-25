@@ -7,6 +7,7 @@ import { CHALLENGE_PASS, ENDLESS_PASS, SUBGAME } from "../../constant/Constant";
 import { getEventEmiter } from "db://assets/doge/framework/common/EventEmitter";
 import { PlayerSystem } from "db://assets/main/script/system/PlayerSystem";
 import { UploadSystem } from "./UploadSystem";
+import { LuckySpinSystem } from "./LuckySpinSystem";
 
 const STORAGE_KEY = {
     LEVEL_INFO: "LEVEL_INFO",
@@ -98,6 +99,9 @@ export class LevelSystem {
                 this.updateLevelInfo(this.vo.runningPass, star);
                 if (this.vo.runningPass == this.vo.passedLv) {
                     this.addLevelInfo();
+                    // 触发通关事件，通知抽奖系统
+                    getEventEmiter().emit(SUBGAME.EVENT.LEVEL_PASSED);
+                    console.log('Level passed event emitted');
                 }
                 break;
         }

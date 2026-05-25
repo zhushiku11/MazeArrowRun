@@ -123,6 +123,11 @@ export const SUBGAME = {
         GAME: "GAME",
         MAIN: "MAIN",
     },
+    /**事件 */
+    EVENT: {
+        LEVEL_PASSED: "LEVEL_PASSED",
+        SPIN_COUNT_CHANGED: "SPIN_COUNT_CHANGED",
+    },
 }
 
 /**挑战模式关卡数 */
@@ -133,7 +138,7 @@ export const ENDLESS_PASS = 100;
 export const MAX_BALL_TYPE = 10;
 
 /**slot游戏条件上限 */
-export const SLOT_CONDITION = 5;
+export const SLOT_CONDITION = 2;
 
 /**动画时间 */
 export const ANIM_TIME = {

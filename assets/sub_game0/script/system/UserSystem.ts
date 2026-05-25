@@ -471,7 +471,7 @@ export class UserSystem {
         let rewardB = 0;
         if (PlayerSystem.I.isNewUser()) {
             NetworkSystem.newUserReward().then((result: NetworkResult) => {
-                console.log(result);
+                console.log("******************",result);
                 if (!result.error) {
                     rewardB = result.data.MjPacg.MjPrnw;
                     switch (Language.currency) {

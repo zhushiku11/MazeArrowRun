@@ -45,6 +45,7 @@ export class GiftBoxPanel extends Component implements IPanel {
     private loop(delay: number) {
         this.reward = UserSystem.I.getCashReward();
         this.num.getComponent(Label).string = Language.getWordByCurrency("l_money", Language.getCurrSym(), AMoney.string(this.reward));
+        // console.log('=== GiftBoxPanel reward ===', this.reward);
         switch (Language.currency) {
             case CurrencyType.US:
                 find("Bg", this.box).getComponent(SpriteSwitcher).index(0);

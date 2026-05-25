@@ -26,6 +26,8 @@ import { PanelCreator } from '../component/creator/PanelCreator';
 import { CheckinPanel } from '../component/panels/CheckinPanel';
 import { PanelFactory } from 'db://assets/doge/framework/panel/PanelFactory';
 import { GameLayer } from '../component/panels/GameLayer';
+import { LuckySpinPanel } from '../component/panels/LuckySpinPanel';
+import { LuckySpinSystem } from '../system/LuckySpinSystem';
 const { ccclass, property } = _decorator;
 
 @ccclass('Game0Scene')
@@ -54,7 +56,12 @@ export class Game0Scene extends Component {
     private onlineReward: Node = null;
     @property(Node)
     private giftBox: Node = null;
-
+    @property(Label)
+    private spinCountLabel: Label = null; // 小红点数量标签
+    @property(Sprite)
+    private spinProgress: Sprite = null; // 转盘进度条
+    @property(Label)
+    private spinProgressLabel: Label = null; // 进度条文字标签
 
     private onlineTime: number = 0;
     private onlineRewardNum: number = 0;
@@ -71,6 +78,8 @@ export class Game0Scene extends Component {
     protected onEnable(): void {
         getEventEmiter().on(SUBGAME.SCENE.MAIN, this.toMainScene, this);
         getEventEmiter().on(SUBGAME.SCENE.GAME, this.restartGame, this);
+        getEventEmiter().on(SUBGAME.EVENT.LEVEL_PASSED, this.updateSpinCount, this);
+        getEventEmiter().on(SUBGAME.EVENT.SPIN_COUNT_CHANGED, this.updateSpinCount, this);
 
         Language.on("@AMoney", this.onAMoneyChange, this);
         Language.on("@BMoney", this.onBMoneyChange, this);
@@ -81,6 +90,8 @@ export class Game0Scene extends Component {
     protected onDisable(): void {
         getEventEmiter().off(SUBGAME.SCENE.MAIN, this.toMainScene, this);
         getEventEmiter().off(SUBGAME.SCENE.GAME, this.restartGame, this);
+        getEventEmiter().off(SUBGAME.EVENT.LEVEL_PASSED, this.updateSpinCount, this);
+        getEventEmiter().off(SUBGAME.EVENT.SPIN_COUNT_CHANGED, this.updateSpinCount, this);
 
         Language.off("@AMoney", this.onAMoneyChange, this);
         Language.off("@BMoney", this.onBMoneyChange, this);
@@ -103,6 +114,7 @@ export class Game0Scene extends Component {
         this.onAMoneyChange();
         this.onBMoneyChange();
         this.onSlotGameTimesChange();
+        this.updateSpinCount(); // 初始化转盘次数
 
         tween(this.amoney.getComponentInChildren(Button).node)
             .to(1, { scales: 1.1 })
@@ -132,7 +144,7 @@ export class Game0Scene extends Component {
                 this.levelWithdraw.active = false;
                 this.withdrawTask.active = true;
                 tween(this.withdrawTask)
-                    .to(1, { scales: 1.1 })
+                    .to(1, { scales: 1.05 })
                     .to(1, { scales: 1.0 })
                     .union()
                     .repeatForever()
@@ -222,33 +234,33 @@ export class Game0Scene extends Component {
     }
 
     onSlotGameTimesChange() {
-        if (UserSystem.I.getSlotGameTimes() >= SLOT_CONDITION) {
-            // find("Tips", this.slotEntrance).getComponent(Label).string = Language.getWord("l_millionaireJackpot");
-            find("Progress", this.slotEntrance).getComponentInChildren(Sprite).fillRange = UserSystem.I.getSlotGameTimes() / SLOT_CONDITION;
-            // 特效
-            if (!this.frame) {
-                let speed = 350;
-                this.frame = instantiate(this.tipsFrame);
-                this.frame.parent = this.slotEntrance;
-                this.frame.position = v3(-275, 50, 0);
-                tween(this.frame)
-                    .by(540 / speed, { x: 550 })
-                    .by(136 / speed, { y: -100 })
-                    .by(540 / speed, { x: -550 })
-                    .by(136 / speed, { y: 100 })
-                    .union()
-                    .repeatForever()
-                    .start()
-            }
-        } else {
-            // find("Tips", this.slotEntrance).getComponent(Label).string = Language.getWord("l_slotEntranceTips", UserSystem.I.getSlotGameTimes().toString(), SLOT_CONDITION.toString());
-            find("Progress", this.slotEntrance).getComponentInChildren(Sprite).fillRange = UserSystem.I.getSlotGameTimes() / SLOT_CONDITION;
-            // find("Bg", this.slotEntrance).getComponent(SpriteSwitcher).index(0);
-            if (this.frame) {
-                this.frame.destroy();
-                this.frame = null;
-            }
-        }
+        // if (UserSystem.I.getSlotGameTimes() >= SLOT_CONDITION) {
+        //     // find("Tips", this.slotEntrance).getComponent(Label).string = Language.getWord("l_millionaireJackpot");
+        //     find("Progress", this.slotEntrance).getComponentInChildren(Sprite).fillRange = UserSystem.I.getSlotGameTimes() / SLOT_CONDITION;
+        //     // 特效
+        //     if (!this.frame) {
+        //         let speed = 350;
+        //         this.frame = instantiate(this.tipsFrame);
+        //         this.frame.parent = this.slotEntrance;
+        //         this.frame.position = v3(-275, 50, 0);
+        //         tween(this.frame)
+        //             .by(540 / speed, { x: 550 })
+        //             .by(136 / speed, { y: -100 })
+        //             .by(540 / speed, { x: -550 })
+        //             .by(136 / speed, { y: 100 })
+        //             .union()
+        //             .repeatForever()
+        //             .start()
+        //     }
+        // } else {
+        //     // find("Tips", this.slotEntrance).getComponent(Label).string = Language.getWord("l_slotEntranceTips", UserSystem.I.getSlotGameTimes().toString(), SLOT_CONDITION.toString());
+        //     find("Progress", this.slotEntrance).getComponentInChildren(Sprite).fillRange = UserSystem.I.getSlotGameTimes() / SLOT_CONDITION;
+        //     // find("Bg", this.slotEntrance).getComponent(SpriteSwitcher).index(0);
+        //     if (this.frame) {
+        //         this.frame.destroy();
+        //         this.frame = null;
+        //     }
+        // }
     }
 
     openOnlineReward() {
@@ -347,6 +359,54 @@ export class Game0Scene extends Component {
 
     onWithdrawTaskBtnClick() {
         PanelCreator.withdrawTask();
+    }
+
+    onSpinBtnClick() {
+        PanelCreator.luckySpin();
+    }
+
+    updateSpinCount() {
+        const count = LuckySpinSystem.I.getSpinCount();
+        if (this.spinCountLabel) {
+            this.spinCountLabel.string = count.toString();
+            if (this.spinCountLabel.node) {
+                this.spinCountLabel.node.active = count > 0;
+            }
+        }
+        
+        // 更新进度条
+        this.updateSpinProgress();
+    }
+    
+    private updateSpinProgress(): void {
+        if (!this.spinProgress) return;
+        
+        const passedLevel = LevelSystem.I.getCurrPass();
+        const currentLevel = passedLevel + 1;  // 当前正在玩的关卡
+        const total = 2;
+        
+        // 进度条逻辑：每2关获得1次抽奖机会，关卡开始时更新
+        // 第1关开始: 1/2 (50%), 第2关开始: 2/2 (100%), 第3关开始: 1/2 (50%), 第4关开始: 2/2 (100%)...
+        let current: number;
+        let progress: number;
+        
+        if (currentLevel % 2 === 1) {
+            // 奇数关（1, 3, 5...）开始时显示 1/2
+            current = 1;
+            progress = 1 / total;
+        } else {
+            // 偶数关（2, 4, 6...）开始时显示 2/2
+            current = total;
+            progress = 1;
+        }
+        this.spinProgress.fillRange = progress;
+        
+        // 更新文字标签显示 "1/2", "2/2" 格式
+        if (this.spinProgressLabel) {
+            this.spinProgressLabel.string = `${current}/${total}`;
+        }
+        
+        console.log(`Spin progress: Level ${currentLevel} -> ${progress * 100}%`);
     }
 
     onAMoneyWithdraw() {

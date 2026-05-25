@@ -33,6 +33,8 @@ export class PassRewardPanel extends Component implements IPanel {
     private upItem: Node = null;
     @property(Node)
     private withdrawTips: Node = null;
+    @property(Node)
+    private noNeed: Node = null;
 
     private rewardANum: number = 0;
     private lock: boolean = false;
@@ -41,7 +43,6 @@ export class PassRewardPanel extends Component implements IPanel {
         AudioTools.sound(AUDIOS.win);
 
         UserSystem.I.addSlotGameTimes();
-
         this.rewardANum = rewardA;
         this.level.getComponent(Label).string = Language.getWord("l_levelNum", level.toString());
         if (this.rewardANum) {
@@ -83,11 +84,21 @@ export class PassRewardPanel extends Component implements IPanel {
         find("LeftTxt", this.upItem).getComponent(Label).string = Language.getWord("l_text1", `+${startRate * 100}%`);
         find("RightTxt", this.upItem).getComponent(Label).string = Language.getWord("l_text1", `+${endRate * 100}%`);
 
+        this.noNeed.active = false;
+        tween(this.noNeed)
+            .delay(2.0)
+            .call(() => {
+                this.noNeed.active = true;
+            })
+            .set({ alpha: 0 })
+            .to(0.2, { alpha: 255 })
+            .start();
+
         this.claim.active = false;
         tween(this.claim)
             .delay(2.0)
             .call(() => {
-                this.claim.active = true;
+                this.claim.active = false;
             })
             .set({ alpha: 0 })
             .to(0.2, { alpha: 255 })
