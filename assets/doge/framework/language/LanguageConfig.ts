@@ -63,6 +63,7 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         l_myWatermelon: "My Watermelon: {0}",
         l_upTips: "Watch videos to increase rewards",
         l_extrasNum: "+{0}%Extras",
+        l_extras: "Extra",
         l_timeUp: "Time is up !",
         l_failed: "Failed",
         l_replay: "Replay",
@@ -164,6 +165,8 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         l_diamond: "Diamond",
         l_master: "Master",
         l_king: "King",
+        l_giveUp: "Give Up",
+        l_use: "Use",
 
         l_faq: "FAQ",
         l_faqq0: "1. How can I withdraw cash?",
@@ -180,6 +183,8 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         l_faqa4: "5times/day",
         l_faqa5: "The same withdrawal account can only be bound to two app accounts at most. Please do not share account with others.",
         l_faqa6: "The use of VPN is prohibited, please do not use it",
+        l_LuckyTip: "Lucky Spin",
+        l_luckyTitle: "Earn 1 lottery chance every 2 levels. Bonus cards raise your next ad profit. Use instantly here; cannot be saved.",
     },
     ID: {
         "l_text1": "{0}",
@@ -242,6 +247,7 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_myWatermelon": "Semangka Saya: {0}",
         "l_upTips": "Tonton video untuk meningkatkan hadiah",
         "l_extrasNum": "+{0}% Ekstra",
+        "l_extras": "Ekstra",
         "l_timeUp": "Waktu habis!",
         "l_failed": "Gagal",
         "l_replay": "Main Ulang",
@@ -336,6 +342,9 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_diamond": "Berlian",
         "l_master": "Master",
         "l_king": "Raja",
+        "l_giveUp": "Menyerah",
+        "l_use": "Gunakan",
+
         "l_faq": "FAQ",
         "l_faqq0": "1. Bagaimana cara menarik uang tunai?",
         "l_faqq1": "2. Berapa lama waktu yang dibutuhkan untuk menarik uang?",
@@ -350,7 +359,10 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_faqa3": "Tidak terbatas.",
         "l_faqa4": "5 kali/hari",
         "l_faqa5": "Akun penarikan yang sama hanya dapat diikat ke maksimal dua akun aplikasi. Harap jangan berbagi akun dengan orang lain.",
-        "l_faqa6": "Penggunaan VPN dilarang, harap jangan gunakan."
+        "l_faqa6": "Penggunaan VPN dilarang, harap jangan gunakan.",
+        "l_LuckyTip": "Putaran Keberuntungan",
+        "l_luckyTitle": "Dapatkan 1 kesempatan undian setiap 2 level. Kartu bonus menambah keuntungan iklan berikutnya. Gunakan langsung di sini, tidak bisa disimpan.",
+        
     },
     PT: {
         "l_text1": "{0}",
@@ -413,6 +425,7 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_myWatermelon": "Minha Melancia: {0}",
         "l_upTips": "Assista vídeos para aumentar recompensas",
         "l_extrasNum": "+{0}% Extras",
+        "l_extras": "Extra",
         "l_timeUp": "O tempo acabou!",
         "l_failed": "Falhou",
         "l_replay": "Repetir",
@@ -507,6 +520,9 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_diamond": "Diamante",
         "l_master": "Mestre",
         "l_king": "Rei",
+        "l_giveUp": "Desistir",
+        "l_use": "Usar",
+
         "l_faq": "Perguntas Frequentes",
         "l_faqq0": "1. Como posso retirar dinheiro?",
         "l_faqq1": "2. Quanto tempo leva para retirar dinheiro?",
@@ -521,7 +537,9 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_faqa3": "Ilimitado.",
         "l_faqa4": "5 vezes/dia",
         "l_faqa5": "A mesma conta de saque só pode ser vinculada a, no máximo, duas contas de aplicativo. Por favor, não compartilhe a conta com outras pessoas.",
-        "l_faqa6": "O uso de VPN é proibido. Por favor, não use."
+        "l_faqa6": "O uso de VPN é proibido. Por favor, não use.",
+        "l_LuckyTip": "Rodada da Sorte",
+        "l_luckyTitle": "Ganhe 1 chance de sorteio a cada 2 níveis. Os cartões bônus aumentam o lucro do próximo anúncio. Use imediatamente aqui, não pode ser guardado.",
     },
     RU: {
     },
@@ -588,6 +606,7 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_myWatermelon": "Mi Sandía: {0}",
         "l_upTips": "Mira videos para aumentar recompensas",
         "l_extrasNum": "+{0}% Extras",
+        "l_extras": "Extras",
         "l_timeUp": "¡Se acabó el tiempo!",
         "l_failed": "Falló",
         "l_replay": "Repetir",
@@ -682,6 +701,9 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_diamond": "Diamante",
         "l_master": "Maestro",
         "l_king": "Rey",
+        "l_giveUp": "Rendirse",
+        "l_use": "Usar",
+
         "l_faq": "Preguntas Frecuentes",
         "l_faqq0": "1. ¿Cómo puedo retirar efectivo?",
         "l_faqq1": "2. ¿Cuánto tiempo se tarda en retirar dinero?",
@@ -696,7 +718,9 @@ export const langWordsTable: { [key: string]: { [key: string]: string } } = {
         "l_faqa3": "Ilimitado.",
         "l_faqa4": "5 veces/día",
         "l_faqa5": "La misma cuenta de retiro solo puede estar vinculada a un máximo de dos cuentas de aplicación. Por favor, no compartas la cuenta con otros.",
-        "l_faqa6": "El uso de VPN está prohibido. Por favor, no lo uses."
+        "l_faqa6": "El uso de VPN está prohibido. Por favor, no lo uses.",
+        "l_LuckyTip": "Giro de la Suerte",
+        "l_luckyTitle": "Earn 1 lottery chance every 2 levels. Bonus cards raise your next ad profit. Use instantly here; cannot be saved.",
     },
     IN: {
     },

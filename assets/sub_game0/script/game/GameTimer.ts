@@ -28,7 +28,6 @@ export class GameTimer extends Component {
         this.passTime.color = color(255, 255, 255, 255);
         CountdownTimer.build("pass", time, this, (countDown: number) => {
             if (countDown == 0) {
-                console.log("time out , game fail");
                 // 失败先弹出复活 再弹出失败
                 PanelCreator.timeout(0);
             }
@@ -38,6 +37,7 @@ export class GameTimer extends Component {
             }
         }).progress((percent: number) => {
         }).start();
+        this.resumeTime();
     }
 
     public stopTime() {

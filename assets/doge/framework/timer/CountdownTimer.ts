@@ -57,7 +57,7 @@ export class CountdownTimer {
 
         this.countDownCb = (dt: number) => {
             if (this.pauseTimes) {
-                return;
+                // return;
             }
             this.time -= dt;
             let sec = Math.ceil(this.time);

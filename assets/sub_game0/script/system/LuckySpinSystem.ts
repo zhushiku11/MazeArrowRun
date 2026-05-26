@@ -73,12 +73,11 @@ export class LuckySpinSystem {
     
     private onLevelPassed(): void {
         this.passedLevelCount++;
-        console.log(`Level passed! Current level: ${this.passedLevelCount}`);
-        
+        // console.log(`Level passed! Current level: ${this.passedLevelCount}`);
         // 第2关、第4关、第6关...通过时增加抽奖机会
         if (this.passedLevelCount % 2 === 0) {
             this.spinCount++;
-            console.log(`Spin count increased! Now: ${this.spinCount}`);
+            // console.log(`Spin count increased! Now: ${this.spinCount}`);
         }
         
         this.saveData();
